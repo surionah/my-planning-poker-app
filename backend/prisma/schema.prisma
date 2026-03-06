@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  MODERATOR
+  GUEST
+}
+
+enum TicketStatus {
+  PENDING
+  VOTING
+  REVEALED
+  COMPLETED
+}
+
+model Room {
+  id        String   @id @default(uuid())
+  name      String
+  code      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  users     User[]
+  tickets   Ticket[]
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  role         UserRole
+  sessionToken String   @unique @default(uuid())
+  isOnline     Boolean  @default(false)
+  roomId       String
+  room         Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  votes        Vote[]
+  createdAt    DateTime @default(now())
+}
+
+model Ticket {
+  id            String       @id @default(uuid())
+  title         String
+  description   String?
+  status        TicketStatus @default(PENDING)
+  finalEstimate String?
+  order         Int
+  roomId        String
+  room          Room         @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  votes         Vote[]
+  createdAt     DateTime     @default(now())
+}
+
+model Vote {
+  id        String   @id @default(uuid())
+  value     String
+  userId    String
+  ticketId  String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ticket    Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([userId, ticketId])
+}

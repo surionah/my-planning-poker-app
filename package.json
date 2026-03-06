@@ -1,0 +1,27 @@
+{
+  "name": "planning-poker",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n backend,frontend -c bgBlue.white,bgGreen.white --kill-others-on-fail \"pnpm --filter backend start:dev\" \"pnpm --filter frontend dev\"",
+    "build": "pnpm --filter backend build && pnpm --filter frontend build",
+    "build:backend": "pnpm --filter backend build",
+    "build:frontend": "pnpm --filter frontend build",
+    "migrate": "pnpm --filter backend prisma:migrate",
+    "migrate:deploy": "pnpm --filter backend prisma:push",
+    "lint": "pnpm --filter backend lint && pnpm --filter frontend lint"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@prisma/client",
+      "@prisma/engines",
+      "prisma",
+      "sharp",
+      "unrs-resolver"
+    ]
+  }
+}
