@@ -61,12 +61,12 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
   }
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-6">
+    <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-6">
       <div className="mb-4">
         <div className="flex items-start justify-between">
           <div>
-            <h2 className="text-lg font-bold text-gray-900">{ticket.title}</h2>
-            {ticket.description && <p className="text-sm text-gray-500 mt-1">{ticket.description}</p>}
+            <h2 className="text-lg font-bold text-zinc-100">{ticket.title}</h2>
+            {ticket.description && <p className="text-sm text-zinc-400 mt-1">{ticket.description}</p>}
           </div>
           {isVoting && isModerator && (
             <div className="flex flex-col items-end gap-1">
@@ -74,7 +74,7 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
                 Reveal votes
               </Button>
               {pendingVotersCount > 0 && (
-                <span className="text-xs text-amber-600">
+                <span className="text-xs text-amber-400">
                   {pendingVotersCount === 1 ? '1 participant pending' : `${pendingVotersCount} participants pending`}
                 </span>
               )}
@@ -85,20 +85,20 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
 
       {isVoting && (
         <div>
-          <p className="text-sm font-medium text-gray-600 mb-3">
+          <p className="text-sm font-medium text-zinc-400 mb-3">
             {isModerator ? 'Select your estimate or wait for participants:' : 'Select your estimate:'}
           </p>
-          <div className="grid grid-cols-7 gap-2">
+          <div className="grid grid-cols-7 gap-3">
             {FIBONACCI_CARDS.map((card) => (
               <button
                 key={card}
                 onClick={() => handleVote(card)}
                 className={cn(
                   'aspect-[2/3] rounded-xl border-2 font-bold text-sm transition-all duration-150',
-                  'hover:scale-105 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500',
+                  'hover:scale-105 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-violet-500 focus:ring-offset-zinc-900',
                   myVote === card
-                    ? 'border-indigo-600 bg-indigo-600 text-white shadow-lg scale-105'
-                    : 'border-gray-200 bg-white text-gray-700 hover:border-indigo-400',
+                    ? 'bg-gradient-to-b from-violet-600 to-violet-800 border-violet-500 text-white shadow-lg scale-110 glow-selected'
+                    : 'bg-zinc-800 border-zinc-700 text-zinc-300 hover:border-violet-500 hover:text-zinc-100',
                 )}
               >
                 {card}
@@ -106,14 +106,14 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
             ))}
           </div>
           {myVote && (
-            <p className="text-center text-sm text-indigo-600 mt-3 font-medium">
+            <p className="text-center text-sm text-violet-400 mt-3 font-medium">
               Your vote: <span className="font-bold">{myVote}</span>
             </p>
           )}
 
           {/* Who voted / who hasn't */}
-          <div className="mt-6 pt-4 border-t border-gray-100">
-            <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
+          <div className="mt-6 pt-4 border-t border-zinc-800">
+            <p className="text-xs font-semibold text-zinc-500 uppercase tracking-wider mb-3">
               Votes ({guestVotedCount}/{guestParticipants.length})
             </p>
             <div className="flex flex-wrap gap-4">
@@ -125,20 +125,20 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
                       <div className={cn(
                         'w-10 h-14 rounded-lg border-2 flex items-center justify-center transition-all',
                         voted
-                          ? 'border-indigo-500 bg-indigo-500 shadow-md'
-                          : 'border-dashed border-gray-300 bg-gray-50',
+                          ? 'border-violet-500 bg-violet-600 shadow-md'
+                          : 'border-dashed border-zinc-600 bg-zinc-800',
                       )}>
                         {voted ? (
                           <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                           </svg>
                         ) : (
-                          <span className="text-gray-300 text-lg">?</span>
+                          <span className="text-zinc-500 text-lg">?</span>
                         )}
                       </div>
                       <span className={cn(
                         'text-xs font-medium max-w-[56px] truncate text-center',
-                        isMe ? 'text-indigo-600' : 'text-gray-600',
+                        isMe ? 'text-violet-400' : 'text-zinc-500',
                       )}>
                         {isMe ? 'You' : p.name.split(' ')[0]}
                       </span>
@@ -151,8 +151,8 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
       )}
 
       {isRevealed && isModerator && (
-        <div className="mt-4 border-t pt-4">
-          <p className="text-sm font-medium text-gray-700 mb-2">Set final estimate:</p>
+        <div className="mt-4 border-t border-zinc-800 pt-4">
+          <p className="text-sm font-medium text-zinc-300 mb-2">Set final estimate:</p>
           <div className="flex gap-2 flex-wrap">
             {FIBONACCI_CARDS.map((card) => (
               <button
@@ -161,8 +161,8 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
                 className={cn(
                   'w-10 h-12 rounded-lg border-2 font-bold text-sm transition-all',
                   selectedEstimate === card
-                    ? 'border-green-600 bg-green-600 text-white'
-                    : 'border-gray-200 hover:border-green-400 text-gray-700',
+                    ? 'bg-gradient-to-b from-emerald-600 to-emerald-800 border-emerald-500 text-white'
+                    : 'border-zinc-700 bg-zinc-800 hover:border-emerald-500 text-zinc-300',
                 )}
               >
                 {card}
@@ -178,7 +178,7 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
       )}
 
       {isRevealed && !isModerator && (
-        <div className="mt-4 text-center text-sm text-gray-500">
+        <div className="mt-4 text-center text-sm text-zinc-500">
           Waiting for the moderator to set the final estimate...
         </div>
       )}

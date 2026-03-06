@@ -8,11 +8,11 @@ interface BadgeProps {
 
 function Badge({ label, variant = 'default' }: BadgeProps) {
   const variants = {
-    default: 'bg-gray-100 text-gray-700',
-    success: 'bg-green-100 text-green-700',
-    warning: 'bg-yellow-100 text-yellow-700',
-    info: 'bg-blue-100 text-blue-700',
-    purple: 'bg-purple-100 text-purple-700',
+    default: 'bg-zinc-800 text-zinc-400 border border-zinc-700',
+    success: 'bg-emerald-950/60 text-emerald-400 border border-emerald-800',
+    warning: 'bg-amber-950/60 text-amber-400 border border-amber-800',
+    info: 'bg-cyan-950/60 text-cyan-400 border border-cyan-800',
+    purple: 'bg-violet-950/60 text-violet-400 border border-violet-800',
   };
   return (
     <span className={cn('inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium', variants[variant])}>

@@ -27,10 +27,10 @@ export default function RoomPageClient({ code }: { code: string }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A0F] flex items-center justify-center">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-500">Loading room...</p>
+          <div className="w-12 h-12 border-4 border-violet-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-zinc-500">Loading room...</p>
         </div>
       </div>
     );
@@ -38,11 +38,11 @@ export default function RoomPageClient({ code }: { code: string }) {
 
   if (error === 'room_not_found') {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#0A0A0F] flex items-center justify-center">
         <div className="text-center">
-          <p className="text-xl font-bold text-gray-900 mb-2">Room not found</p>
-          <p className="text-gray-500">Room {roomCode} does not exist.</p>
-          <Link href="/" className="mt-4 inline-block text-indigo-600 hover:underline">Back to home</Link>
+          <p className="text-xl font-bold text-zinc-100 mb-2">Room not found</p>
+          <p className="text-zinc-500">Room {roomCode} does not exist.</p>
+          <Link href="/" className="mt-4 inline-block text-violet-400 hover:text-violet-300 hover:underline">Back to home</Link>
         </div>
       </div>
     );
@@ -75,7 +75,7 @@ export default function RoomPageClient({ code }: { code: string }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[#0A0A0F]">
       <RoomHeader
         room={room}
         participants={participants}
@@ -125,14 +125,14 @@ export default function RoomPageClient({ code }: { code: string }) {
               )}
             </div>
           ) : (
-            <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
-              <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-12 text-center">
+              <div className="w-16 h-16 bg-zinc-800 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg>
               </div>
-              <h2 className="text-xl font-bold text-gray-900 mb-2">Planning Poker</h2>
-              <p className="text-gray-500">
+              <h2 className="text-xl font-bold text-zinc-100 mb-2">Planning Poker</h2>
+              <p className="text-zinc-500">
                 {tickets.length === 0
                   ? session.role === UserRole.MODERATOR
                     ? 'Create the first ticket to start estimating.'

@@ -40,9 +40,9 @@ export function TicketList({ tickets, activeTicket, session, roomCode, onTicketC
   }
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200">
-      <div className="flex items-center justify-between p-4 border-b border-gray-100">
-        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">Tickets ({tickets.length})</h3>
+    <div className="bg-zinc-900 rounded-xl border border-zinc-800">
+      <div className="flex items-center justify-between p-4 border-b border-zinc-800">
+        <h3 className="text-sm font-semibold text-zinc-500 uppercase tracking-wider">Tickets ({tickets.length})</h3>
         {isModerator && (
           <Button size="sm" onClick={() => setModalOpen(true)}>
             <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -52,9 +52,9 @@ export function TicketList({ tickets, activeTicket, session, roomCode, onTicketC
           </Button>
         )}
       </div>
-      <div className="divide-y divide-gray-100 max-h-96 overflow-y-auto">
+      <div className="divide-y divide-zinc-800 max-h-96 overflow-y-auto">
         {tickets.length === 0 && (
-          <div className="p-6 text-center text-sm text-gray-400">
+          <div className="p-6 text-center text-sm text-zinc-500">
             {isModerator ? 'Create the first ticket to get started' : 'Waiting for tickets...'}
           </div>
         )}
@@ -65,23 +65,23 @@ export function TicketList({ tickets, activeTicket, session, roomCode, onTicketC
           return (
             <div
               key={ticket.id}
-              className={`group px-3 py-2.5 transition-colors ${isActive ? 'bg-indigo-50 border-l-4 border-l-indigo-500' : 'border-l-4 border-l-transparent hover:bg-gray-50'}`}
+              className={`group px-3 py-2.5 transition-colors ${isActive ? 'bg-violet-950/30 border-l-4 border-l-violet-500' : 'border-l-4 border-l-transparent hover:bg-zinc-800/50'}`}
             >
               <div className="flex items-center gap-2">
                 {/* Status dot */}
                 <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${
                   isVoting ? 'bg-amber-400 animate-pulse' :
-                  ticket.status === TicketStatus.COMPLETED ? 'bg-green-400' :
-                  isActive ? 'bg-indigo-400' : 'bg-gray-300'
+                  ticket.status === TicketStatus.COMPLETED ? 'bg-emerald-400' :
+                  isActive ? 'bg-violet-400' : 'bg-zinc-600'
                 }`} />
 
                 <div className="flex-1 min-w-0">
-                  <p className={`text-sm font-medium truncate ${isActive ? 'text-indigo-900' : 'text-gray-800'}`}>
+                  <p className={`text-sm font-medium truncate ${isActive ? 'text-violet-300' : 'text-zinc-300'}`}>
                     {ticket.title}
                   </p>
                   {ticket.finalEstimate && (
-                    <p className="text-xs text-gray-400 mt-0.5">
-                      Estimate: <span className="font-bold text-indigo-600">{ticket.finalEstimate}</span>
+                    <p className="text-xs text-zinc-500 mt-0.5">
+                      Estimate: <span className="font-bold text-violet-400">{ticket.finalEstimate}</span>
                     </p>
                   )}
                 </div>
@@ -90,7 +90,7 @@ export function TicketList({ tickets, activeTicket, session, roomCode, onTicketC
                   {isModerator && isPending ? (
                     <button
                       onClick={() => onStartVoting(ticket)}
-                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-600 text-white hover:bg-indigo-700 transition-colors shadow-sm"
+                      className="flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-violet-700 text-white hover:bg-violet-600 transition-colors shadow-sm"
                     >
                       <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
@@ -111,10 +111,10 @@ export function TicketList({ tickets, activeTicket, session, roomCode, onTicketC
         <form onSubmit={handleCreate} className="space-y-4">
           <Input label="Title" placeholder="PROJ-123: Implement login" value={title} onChange={(e) => setTitle(e.target.value)} required />
           <div>
-            <label htmlFor="ticket-description" className="block text-sm font-medium text-gray-700 mb-1">Description (optional)</label>
+            <label htmlFor="ticket-description" className="block text-sm font-medium text-zinc-300 mb-1">Description (optional)</label>
             <textarea
               id="ticket-description"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              className="w-full px-3 py-2 border border-zinc-700 bg-zinc-900 text-zinc-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
               rows={3}
               placeholder="Ticket details..."
               value={description}

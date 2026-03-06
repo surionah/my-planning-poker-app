@@ -55,8 +55,8 @@ export function JoinRoomForm() {
         minLength={2}
         maxLength={50}
       />
-      {error && <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{error}</p>}
-      <Button type="submit" variant="secondary" disabled={loading} className="w-full" size="lg">
+      {error && <p className="text-sm text-red-400 bg-red-950/30 border border-red-800 px-3 py-2 rounded-lg">{error}</p>}
+      <Button type="submit" variant="secondary" disabled={loading} className="w-full !border-cyan-700 !text-cyan-300 hover:!bg-cyan-950/40" size="lg">
         {loading ? 'Joining...' : 'Join room'}
       </Button>
     </form>

@@ -1,1 +1,59 @@
 @import "tailwindcss";
+
+:root {
+  --bg-base: #0A0A0F;
+  --accent-primary: theme(colors.violet.500);
+  --accent-secondary: theme(colors.cyan.500);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background-color: rgba(139, 92, 246, 0.3);
+  color: #f4f4f5;
+}
+
+/* Dark scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #18181b;
+}
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px 2px rgba(139, 92, 246, 0.5), 0 0 20px 4px rgba(139, 92, 246, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 16px 4px rgba(139, 92, 246, 0.7), 0 0 32px 8px rgba(139, 92, 246, 0.35);
+  }
+}
+
+.glow-selected {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-card {
+  background: rgba(24, 24, 27, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid #27272a;
+}
