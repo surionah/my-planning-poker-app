@@ -30,7 +30,7 @@ export default function RoomPageClient({ code }: { code: string }) {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-          <p className="text-gray-500">Cargando sala...</p>
+          <p className="text-gray-500">Loading room...</p>
         </div>
       </div>
     );
@@ -40,9 +40,9 @@ export default function RoomPageClient({ code }: { code: string }) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <p className="text-xl font-bold text-gray-900 mb-2">Sala no encontrada</p>
-          <p className="text-gray-500">El codigo {roomCode} no existe.</p>
-          <Link href="/" className="mt-4 inline-block text-indigo-600 hover:underline">Volver al inicio</Link>
+          <p className="text-xl font-bold text-gray-900 mb-2">Room not found</p>
+          <p className="text-gray-500">Room {roomCode} does not exist.</p>
+          <Link href="/" className="mt-4 inline-block text-indigo-600 hover:underline">Back to home</Link>
         </div>
       </div>
     );
@@ -135,11 +135,11 @@ export default function RoomPageClient({ code }: { code: string }) {
               <p className="text-gray-500">
                 {tickets.length === 0
                   ? session.role === UserRole.MODERATOR
-                    ? 'Crea el primer ticket para comenzar la estimacion.'
-                    : 'Esperando a que el moderador cree tickets...'
+                    ? 'Create the first ticket to start estimating.'
+                    : 'Waiting for the moderator to create tickets...'
                   : session.role === UserRole.MODERATOR
-                    ? 'Selecciona un ticket y presiona "Votar" para iniciar la estimacion.'
-                    : 'Esperando a que el moderador inicie la votacion...'}
+                    ? 'Select a ticket and press "Vote" to start estimating.'
+                    : 'Waiting for the moderator to start voting...'}
               </p>
             </div>
           )}

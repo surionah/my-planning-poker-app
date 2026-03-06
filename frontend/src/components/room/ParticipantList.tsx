@@ -15,7 +15,7 @@ export function ParticipantList({ participants, activeTicket, votes, votedUserId
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-4">
-      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Participantes</h3>
+      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">Participants</h3>
       <div className="space-y-2">
         {participants.map((p) => {
           const vote = votes.find((v) => v.userId === p.id);
@@ -29,7 +29,7 @@ export function ParticipantList({ participants, activeTicket, votes, votedUserId
                 </div>
                 <div>
                   <span className="text-sm font-medium text-gray-900">{p.name}</span>
-                  {p.id === currentUserId && <span className="ml-1 text-xs text-gray-400">(Tú)</span>}
+                  {p.id === currentUserId && <span className="ml-1 text-xs text-gray-400">(You)</span>}
                 </div>
               </div>
               {p.role === UserRole.MODERATOR ? (
@@ -40,7 +40,7 @@ export function ParticipantList({ participants, activeTicket, votes, votedUserId
                 </span>
               ) : (isVoting || isRevealed) ? (
                 <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${hasVoted ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}`}>
-                  {hasVoted ? '✓ Votó' : 'Pendiente'}
+                  {hasVoted ? '✓ Voted' : 'Pending'}
                 </span>
               ) : null}
             </div>

@@ -23,10 +23,10 @@ function Badge({ label, variant = 'default' }: BadgeProps) {
 
 export function TicketStatusBadge({ status }: { status: TicketStatus }) {
   const config: Record<TicketStatus, { label: string; variant: BadgeProps['variant'] }> = {
-    [TicketStatus.PENDING]: { label: 'Pendiente', variant: 'default' },
-    [TicketStatus.VOTING]: { label: 'Votando', variant: 'warning' },
-    [TicketStatus.REVEALED]: { label: 'Revelado', variant: 'info' },
-    [TicketStatus.COMPLETED]: { label: 'Completado', variant: 'success' },
+    [TicketStatus.PENDING]: { label: 'Pending', variant: 'default' },
+    [TicketStatus.VOTING]: { label: 'Voting', variant: 'warning' },
+    [TicketStatus.REVEALED]: { label: 'Revealed', variant: 'info' },
+    [TicketStatus.COMPLETED]: { label: 'Completed', variant: 'success' },
   };
   const { label, variant } = config[status];
   return <Badge label={label} variant={variant} />;

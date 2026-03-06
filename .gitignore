@@ -1,8 +1,37 @@
-node_modules/
+# dependencies
+node_modules
+
+# environment variables
 .env
-dist/
+.env.local
+
+# build outputs
+dist
 .next/
+out/
+build
+
+# logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# testing
+coverage
+
+# misc
 .DS_Store
-coverage/
+*.pem
+*.tsbuildinfo
+next-env.d.ts
+
+# vercel
+.vercel
+
+# prisma generated client
+backend/generated/prisma
+
+# local claude settings
 .claude/

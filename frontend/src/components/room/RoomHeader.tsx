@@ -68,14 +68,14 @@ export function RoomHeader({ room, participants, currentUser, roomCode, onLeave 
   async function handleConfirmLeave() {
     if (isModerator && candidates.length > 0) {
       if (!selectedId) {
-        dispatch({ type: 'SET_ERROR', value: 'Selecciona un participante para continuar.' });
+        dispatch({ type: 'SET_ERROR', value: 'Select a participant to continue.' });
         return;
       }
       dispatch({ type: 'SET_TRANSFERRING', value: true });
       try {
         await api.transferModerator(roomCode, selectedId, currentUser.sessionToken);
       } catch {
-        dispatch({ type: 'SET_ERROR', value: 'No se pudo transferir el rol. Intenta de nuevo.' });
+        dispatch({ type: 'SET_ERROR', value: 'Could not transfer the role. Please try again.' });
         dispatch({ type: 'SET_TRANSFERRING', value: false });
         return;
       }
@@ -108,7 +108,7 @@ export function RoomHeader({ room, participants, currentUser, roomCode, onLeave 
           </div>
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2">
-              <span className="text-xs text-gray-500">Código:</span>
+              <span className="text-xs text-gray-500">Code:</span>
               <span className="font-mono font-bold text-gray-900 tracking-widest">{room.code}</span>
             </div>
             <Button variant="secondary" size="sm" onClick={copyLink}>
@@ -117,29 +117,29 @@ export function RoomHeader({ room, participants, currentUser, roomCode, onLeave 
                   <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
-                  Copiado
+                  Copied
                 </span>
               ) : (
                 <span className="flex items-center gap-1.5">
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
                   </svg>
-                  Copiar link
+                  Copy link
                 </span>
               )}
             </Button>
             <div className="text-sm">
-              <span className="text-gray-500">Hola, </span>
+              <span className="text-gray-500">Hi, </span>
               <span className="font-medium text-gray-900">{currentUser.userName}</span>
               <span className="ml-1.5 text-xs text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded-full">
-                {isModerator ? 'Moderador' : 'Invitado'}
+                {isModerator ? 'Moderator' : 'Guest'}
               </span>
             </div>
             <Button variant="ghost" size="sm" onClick={openLeaveModal} className="text-red-500 hover:text-red-600 hover:bg-red-50">
               <svg className="w-4 h-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
               </svg>
-              Salir
+              Leave
             </Button>
           </div>
         </div>
@@ -148,13 +148,13 @@ export function RoomHeader({ room, participants, currentUser, roomCode, onLeave 
       <Modal
         open={modalOpen}
         onClose={() => dispatch({ type: 'CLOSE_MODAL' })}
-        title={needsTransfer ? 'Designar nuevo moderador' : '¿Salir de la sala?'}
+        title={needsTransfer ? 'Assign new moderator' : 'Leave the room?'}
         className="max-w-lg"
       >
         {needsTransfer ? (
           <>
             <p className="text-sm text-gray-500 mb-4">
-              Eres el moderador de esta sala. Antes de salir, designa a otro participante como moderador.
+              You are the moderator of this room. Before leaving, assign another participant as moderator.
             </p>
             <div className="space-y-2 mb-5 max-h-56 overflow-y-auto pr-1">
               {candidates.map((p) => (
@@ -173,7 +173,7 @@ export function RoomHeader({ room, participants, currentUser, roomCode, onLeave 
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-gray-900 truncate">{p.name}</p>
-                    <p className="text-xs text-gray-400">{p.isOnline ? 'En línea' : 'Desconectado'}</p>
+                    <p className="text-xs text-gray-400">{p.isOnline ? 'Online' : 'Offline'}</p>
                   </div>
                   {selectedId === p.id && (
                     <svg className="w-5 h-5 text-indigo-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -185,9 +185,9 @@ export function RoomHeader({ room, participants, currentUser, roomCode, onLeave 
             </div>
             {error && <p className="text-sm text-red-600 mb-3">{error}</p>}
             <div className="flex gap-3 justify-end">
-              <Button variant="secondary" onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>Cancelar</Button>
+              <Button variant="secondary" onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>Cancel</Button>
               <Button variant="danger" onClick={handleConfirmLeave} disabled={transferring}>
-                {transferring ? 'Transfiriendo...' : 'Transferir y salir'}
+                {transferring ? 'Transferring...' : 'Transfer and leave'}
               </Button>
             </div>
           </>
@@ -195,13 +195,13 @@ export function RoomHeader({ room, participants, currentUser, roomCode, onLeave 
           <>
             <p className="text-sm text-gray-500 mb-6">
               {isModerator
-                ? 'Eres el único participante. La sala seguirá activa y podrás volver con el código '
-                : 'Tu sesión se cerrará. Podrás volver a unirte usando el código '}
+                ? 'You are the only participant. The room will remain active and you can return with code '
+                : 'Your session will end. You can rejoin using code '}
               <span className="font-mono font-bold text-indigo-600">{room.code}</span>.
             </p>
             <div className="flex gap-3 justify-end">
-              <Button variant="secondary" onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>Cancelar</Button>
-              <Button variant="danger" onClick={handleConfirmLeave}>Salir de la sala</Button>
+              <Button variant="secondary" onClick={() => dispatch({ type: 'CLOSE_MODAL' })}>Cancel</Button>
+              <Button variant="danger" onClick={handleConfirmLeave}>Leave room</Button>
             </div>
           </>
         )}

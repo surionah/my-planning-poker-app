@@ -6,12 +6,12 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Planning Poker',
-  description: 'Estima historias de usuario de forma colaborativa',
+  description: 'Collaboratively estimate user stories in real time with your team.',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body className={inter.className}>{children}</body>
     </html>
   );

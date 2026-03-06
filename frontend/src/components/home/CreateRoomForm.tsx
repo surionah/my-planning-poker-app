@@ -29,7 +29,7 @@ export function CreateRoomForm() {
       });
       router.push(`/room/${result.room.code}`);
     } catch (err: any) {
-      setError(err.message || 'Error al crear la sala');
+      setError(err.message || 'Error creating room');
     } finally {
       setLoading(false);
     }
@@ -38,7 +38,7 @@ export function CreateRoomForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <Input
-        label="Nombre de la sala"
+        label="Room name"
         placeholder="Sprint 42 Planning"
         value={roomName}
         onChange={(e) => setRoomName(e.target.value)}
@@ -47,7 +47,7 @@ export function CreateRoomForm() {
         maxLength={50}
       />
       <Input
-        label="Tu nombre (Moderador)"
+        label="Your name (Moderator)"
         placeholder="John Doe"
         value={moderatorName}
         onChange={(e) => setModeratorName(e.target.value)}
@@ -57,7 +57,7 @@ export function CreateRoomForm() {
       />
       {error && <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{error}</p>}
       <Button type="submit" disabled={loading} className="w-full" size="lg">
-        {loading ? 'Creando...' : 'Crear sala'}
+        {loading ? 'Creating...' : 'Create room'}
       </Button>
     </form>
   );

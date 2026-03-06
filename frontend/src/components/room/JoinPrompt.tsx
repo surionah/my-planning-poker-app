@@ -33,7 +33,7 @@ export function JoinPrompt({ roomCode, roomName, onJoined }: JoinPromptProps) {
       saveSession(roomCode, session);
       onJoined(session);
     } catch (err: any) {
-      setError(err.message || 'Error al unirse a la sala');
+      setError(err.message || 'Error joining room');
     } finally {
       setLoading(false);
     }
@@ -48,12 +48,12 @@ export function JoinPrompt({ roomCode, roomName, onJoined }: JoinPromptProps) {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
           </div>
-          <h2 className="text-2xl font-bold text-gray-900">Unirse a la sala</h2>
+          <h2 className="text-2xl font-bold text-gray-900">Join the room</h2>
           <p className="text-gray-500 mt-1">{roomName}</p>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
-            label="Tu nombre"
+            label="Your name"
             placeholder="Jane Smith"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -61,7 +61,7 @@ export function JoinPrompt({ roomCode, roomName, onJoined }: JoinPromptProps) {
           />
           {error && <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{error}</p>}
           <Button type="submit" disabled={loading} className="w-full" size="lg">
-            {loading ? 'Uniendose...' : 'Entrar a la sala'}
+            {loading ? 'Joining...' : 'Enter room'}
           </Button>
         </form>
       </div>

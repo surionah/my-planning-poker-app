@@ -1,19 +1,19 @@
 # Planning Poker App
 
-Aplicación web de Planning Poker en tiempo real. Sin registro — solo introduce tu nombre.
+Real-time Planning Poker web application. No registration required — just enter your name.
 
 ## Stack
 
-| Capa | Tecnología |
-|------|-----------|
+| Layer | Technology |
+|-------|-----------|
 | Frontend | Next.js 15 + TailwindCSS + socket.io-client |
 | Backend | NestJS + Socket.IO + Clean Architecture |
-| Base de datos | PostgreSQL (Prisma 5) |
-| Infra | Docker Compose |
+| Database | PostgreSQL (Prisma 5) |
+| Infrastructure | Docker Compose |
 
-## Inicio rápido
+## Quick start
 
-### Con Docker (recomendado)
+### With Docker (recommended)
 
 ```bash
 cp .env.example .env
@@ -23,52 +23,60 @@ docker-compose up --build
 - Frontend: http://localhost:3000
 - Backend: http://localhost:3001
 
-### Desarrollo local
+### Local development
 
-**Prerrequisitos:** Node 20+, PostgreSQL corriendo en localhost:5432
+**Prerequisites:** Node 20+, pnpm, PostgreSQL running on localhost:5432
 
 ```bash
-# 1. Copia variables de entorno
+# 1. Copy environment variables
 cp .env.example .env
-# Edita .env con tu DATABASE_URL local
+# Edit .env with your local DATABASE_URL
 
-# 2. Backend
-cd backend
-npm install
-npx prisma migrate dev --name init
-npm run start:dev
+# 2. Install dependencies (from root)
+pnpm install
 
-# 3. Frontend (nueva terminal)
-cd frontend
-npm install
-npm run dev
+# 3. Run database migrations
+pnpm migrate
+
+# 4. Start both services (from root)
+pnpm dev
 ```
 
-## Funcionalidades
+Or run each service separately:
 
-- **Moderador:** crea sala, crea tickets, inicia votación, revela votos, establece estimación final
-- **Invitado:** vota tickets activos, ve resultados en tiempo real
-- **Escala Fibonacci:** 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ?, ∞, ☕
-- **Persistencia de sesión:** via localStorage + sessionToken en DB
-- **Tiempo real:** WebSockets (Socket.IO) para todos los eventos
+```bash
+# Backend
+cd backend && pnpm start:dev
 
-## Flujo de uso
+# Frontend (separate terminal)
+cd frontend && pnpm dev
+```
 
-1. El moderador crea una sala e introduce su nombre
-2. Comparte el link o código de sala con el equipo
-3. El equipo se une introduciendo su nombre
-4. Moderador crea tickets (título + descripción opcional)
-5. Moderador inicia la votación en un ticket → todos votan
-6. Moderador revela los votos → se muestra gráfico de resultados
-7. Moderador establece la estimación final → ticket completado
-8. Repetir para el siguiente ticket
+## Features
 
-## Arquitectura del backend
+- **Moderator:** create room, create tickets, start voting, reveal votes, set final estimate
+- **Guest:** vote on active tickets, see results in real time
+- **Fibonacci scale:** 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ?, ∞, ☕
+- **Session persistence:** via localStorage + sessionToken in DB
+- **Real time:** WebSockets (Socket.IO) for all events
+
+## Usage flow
+
+1. Moderator creates a room and enters their name
+2. Share the link or room code with the team
+3. Team members join by entering their name
+4. Moderator creates tickets (title + optional description)
+5. Moderator starts voting on a ticket → everyone votes
+6. Moderator reveals votes → results chart is displayed
+7. Moderator sets the final estimate → ticket completed
+8. Repeat for the next ticket
+
+## Backend architecture
 
 ```
 src/
-├── domain/          # Entidades + interfaces de repositorios
-├── application/     # Casos de uso + DTOs
+├── domain/          # Entities + repository interfaces
+├── application/     # Use cases + DTOs
 ├── infrastructure/  # Prisma repos + WebSocket gateway
-└── presentation/    # Controladores + guards + módulos
+└── presentation/    # Controllers + guards + modules
 ```

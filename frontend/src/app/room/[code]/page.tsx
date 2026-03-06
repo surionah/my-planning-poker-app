@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import RoomPageClient from './RoomPageClient';
 
 export const metadata: Metadata = {
-  title: 'Sala | Planning Poker',
-  description: 'Estima historias de usuario en tiempo real con tu equipo.',
+  title: 'Room | Planning Poker',
+  description: 'Estimate user stories in real time with your team.',
 };
 
 interface PageProps {

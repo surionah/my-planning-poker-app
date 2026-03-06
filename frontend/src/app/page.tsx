@@ -4,7 +4,7 @@ import { JoinRoomForm } from '@/components/home/JoinRoomForm';
 
 export const metadata: Metadata = {
   title: 'Planning Poker',
-  description: 'Estima tus historias de usuario de forma colaborativa y en tiempo real con tu equipo.',
+  description: 'Collaboratively estimate user stories in real time with your team.',
 };
 
 export default function HomePage() {
@@ -22,7 +22,7 @@ export default function HomePage() {
             <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">Planning Poker</h1>
           </div>
           <p className="text-lg text-gray-500 max-w-md mx-auto">
-            Estima tus historias de usuario de forma colaborativa y en tiempo real con tu equipo.
+            Collaboratively estimate user stories in real time with your team.
           </p>
         </div>
 
@@ -36,8 +36,8 @@ export default function HomePage() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-lg font-bold text-gray-900">Crear sala</h2>
-                <p className="text-sm text-gray-500">Inicia una nueva sesion de planning</p>
+                <h2 className="text-lg font-bold text-gray-900">Create room</h2>
+                <p className="text-sm text-gray-500">Start a new planning session</p>
               </div>
             </div>
             <CreateRoomForm />
@@ -51,8 +51,8 @@ export default function HomePage() {
                 </svg>
               </div>
               <div>
-                <h2 className="text-lg font-bold text-gray-900">Unirse a sala</h2>
-                <p className="text-sm text-gray-500">Entra con el codigo de invitacion</p>
+                <h2 className="text-lg font-bold text-gray-900">Join room</h2>
+                <p className="text-sm text-gray-500">Enter with the invitation code</p>
               </div>
             </div>
             <JoinRoomForm />
@@ -60,7 +60,7 @@ export default function HomePage() {
         </div>
 
         <p className="text-center text-sm text-gray-400 mt-8">
-          Escala Fibonacci: 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ?, ∞, ☕
+          Fibonacci scale: 0, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ?, ∞, ☕
         </p>
       </div>
     </main>

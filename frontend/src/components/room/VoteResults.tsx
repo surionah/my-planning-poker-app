@@ -23,21 +23,21 @@ export function VoteResults({ votes, participants }: VoteResultsProps) {
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-6 mt-4">
-      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Resultados</h3>
+      <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-4">Results</h3>
 
       {avg && (
         <div className="flex items-center gap-4 mb-4 p-3 bg-indigo-50 rounded-lg">
           <div className="text-center">
             <p className="text-2xl font-bold text-indigo-700">{avg}</p>
-            <p className="text-xs text-indigo-500">Promedio</p>
+            <p className="text-xs text-indigo-500">Average</p>
           </div>
           <div className="text-center">
             <p className="text-2xl font-bold text-indigo-700">{sortedValues[0]?.[0] || '-'}</p>
-            <p className="text-xs text-indigo-500">Mas votado</p>
+            <p className="text-xs text-indigo-500">Most voted</p>
           </div>
           <div className="text-center">
             <p className="text-2xl font-bold text-indigo-700">{votes.length}</p>
-            <p className="text-xs text-indigo-500">Votos</p>
+            <p className="text-xs text-indigo-500">Votes</p>
           </div>
         </div>
       )}

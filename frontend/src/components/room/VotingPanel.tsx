@@ -71,11 +71,11 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
           {isVoting && isModerator && (
             <div className="flex flex-col items-end gap-1">
               <Button size="sm" onClick={handleReveal} variant="primary" disabled={pendingVotersCount > 0}>
-                Revelar votos
+                Reveal votes
               </Button>
               {pendingVotersCount > 0 && (
                 <span className="text-xs text-amber-600">
-                  {pendingVotersCount === 1 ? '1 participante pendiente' : `${pendingVotersCount} participantes pendientes`}
+                  {pendingVotersCount === 1 ? '1 participant pending' : `${pendingVotersCount} participants pending`}
                 </span>
               )}
             </div>
@@ -86,7 +86,7 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
       {isVoting && (
         <div>
           <p className="text-sm font-medium text-gray-600 mb-3">
-            {isModerator ? 'Selecciona tu estimacion o espera a los participantes:' : 'Selecciona tu estimacion:'}
+            {isModerator ? 'Select your estimate or wait for participants:' : 'Select your estimate:'}
           </p>
           <div className="grid grid-cols-7 gap-2">
             {FIBONACCI_CARDS.map((card) => (
@@ -107,14 +107,14 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
           </div>
           {myVote && (
             <p className="text-center text-sm text-indigo-600 mt-3 font-medium">
-              Tu voto: <span className="font-bold">{myVote}</span>
+              Your vote: <span className="font-bold">{myVote}</span>
             </p>
           )}
 
           {/* Who voted / who hasn't */}
           <div className="mt-6 pt-4 border-t border-gray-100">
             <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">
-              Votos ({guestVotedCount}/{guestParticipants.length})
+              Votes ({guestVotedCount}/{guestParticipants.length})
             </p>
             <div className="flex flex-wrap gap-4">
               {guestParticipants.map((p) => {
@@ -140,7 +140,7 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
                         'text-xs font-medium max-w-[56px] truncate text-center',
                         isMe ? 'text-indigo-600' : 'text-gray-600',
                       )}>
-                        {isMe ? 'Tú' : p.name.split(' ')[0]}
+                        {isMe ? 'You' : p.name.split(' ')[0]}
                       </span>
                     </div>
                   );
@@ -152,7 +152,7 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
 
       {isRevealed && isModerator && (
         <div className="mt-4 border-t pt-4">
-          <p className="text-sm font-medium text-gray-700 mb-2">Establecer estimacion final:</p>
+          <p className="text-sm font-medium text-gray-700 mb-2">Set final estimate:</p>
           <div className="flex gap-2 flex-wrap">
             {FIBONACCI_CARDS.map((card) => (
               <button
@@ -171,7 +171,7 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
           </div>
           <div className="flex gap-3 mt-4">
             <Button onClick={handleComplete} disabled={!selectedEstimate || completing} variant="primary">
-              {completing ? 'Guardando...' : `Confirmar: ${selectedEstimate || '-'}`}
+              {completing ? 'Saving...' : `Confirm: ${selectedEstimate || '-'}`}
             </Button>
           </div>
         </div>
@@ -179,7 +179,7 @@ export function VotingPanel({ ticket, session, roomCode, myVote, pendingVotersCo
 
       {isRevealed && !isModerator && (
         <div className="mt-4 text-center text-sm text-gray-500">
-          Esperando a que el moderador establezca la estimacion final...
+          Waiting for the moderator to set the final estimate...
         </div>
       )}
     </div>

@@ -29,7 +29,7 @@ export function JoinRoomForm() {
       });
       router.push(`/room/${result.room.code}`);
     } catch (err: any) {
-      setError(err.message || 'Sala no encontrada');
+      setError(err.message || 'Room not found');
     } finally {
       setLoading(false);
     }
@@ -38,7 +38,7 @@ export function JoinRoomForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <Input
-        label="Código de sala"
+        label="Room code"
         placeholder="ABC123"
         value={code}
         onChange={(e) => setCode(e.target.value.toUpperCase())}
@@ -47,7 +47,7 @@ export function JoinRoomForm() {
         className="uppercase tracking-widest font-mono text-center text-lg"
       />
       <Input
-        label="Tu nombre"
+        label="Your name"
         placeholder="Jane Smith"
         value={name}
         onChange={(e) => setName(e.target.value)}
@@ -57,7 +57,7 @@ export function JoinRoomForm() {
       />
       {error && <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{error}</p>}
       <Button type="submit" variant="secondary" disabled={loading} className="w-full" size="lg">
-        {loading ? 'Uniéndose...' : 'Unirse a sala'}
+        {loading ? 'Joining...' : 'Join room'}
       </Button>
     </form>
   );

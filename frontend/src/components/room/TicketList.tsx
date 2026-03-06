@@ -48,14 +48,14 @@ export function TicketList({ tickets, activeTicket, session, roomCode, onTicketC
             <svg className="w-4 h-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
-            Nuevo
+            New
           </Button>
         )}
       </div>
       <div className="divide-y divide-gray-100 max-h-96 overflow-y-auto">
         {tickets.length === 0 && (
           <div className="p-6 text-center text-sm text-gray-400">
-            {isModerator ? 'Crea el primer ticket para empezar' : 'Esperando tickets...'}
+            {isModerator ? 'Create the first ticket to get started' : 'Waiting for tickets...'}
           </div>
         )}
         {tickets.map((ticket) => {
@@ -81,7 +81,7 @@ export function TicketList({ tickets, activeTicket, session, roomCode, onTicketC
                   </p>
                   {ticket.finalEstimate && (
                     <p className="text-xs text-gray-400 mt-0.5">
-                      Estimado: <span className="font-bold text-indigo-600">{ticket.finalEstimate}</span>
+                      Estimate: <span className="font-bold text-indigo-600">{ticket.finalEstimate}</span>
                     </p>
                   )}
                 </div>
@@ -95,7 +95,7 @@ export function TicketList({ tickets, activeTicket, session, roomCode, onTicketC
                       <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
                       </svg>
-                      Votar
+                      Vote
                     </button>
                   ) : (
                     <TicketStatusBadge status={ticket.status} />
@@ -107,23 +107,23 @@ export function TicketList({ tickets, activeTicket, session, roomCode, onTicketC
         })}
       </div>
 
-      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="Nuevo ticket">
+      <Modal open={modalOpen} onClose={() => setModalOpen(false)} title="New ticket">
         <form onSubmit={handleCreate} className="space-y-4">
-          <Input label="Titulo" placeholder="PROJ-123: Implementar login" value={title} onChange={(e) => setTitle(e.target.value)} required />
+          <Input label="Title" placeholder="PROJ-123: Implement login" value={title} onChange={(e) => setTitle(e.target.value)} required />
           <div>
-            <label htmlFor="ticket-description" className="block text-sm font-medium text-gray-700 mb-1">Descripcion (opcional)</label>
+            <label htmlFor="ticket-description" className="block text-sm font-medium text-gray-700 mb-1">Description (optional)</label>
             <textarea
               id="ticket-description"
               className="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
               rows={3}
-              placeholder="Detalles del ticket..."
+              placeholder="Ticket details..."
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
           </div>
           <div className="flex gap-3 justify-end">
-            <Button type="button" variant="ghost" onClick={() => setModalOpen(false)}>Cancelar</Button>
-            <Button type="submit" disabled={creating}>{creating ? 'Creando...' : 'Crear ticket'}</Button>
+            <Button type="button" variant="ghost" onClick={() => setModalOpen(false)}>Cancel</Button>
+            <Button type="submit" disabled={creating}>{creating ? 'Creating...' : 'Create ticket'}</Button>
           </div>
         </form>
       </Modal>
